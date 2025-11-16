@@ -336,10 +336,22 @@ LABEL_ALIAS = {
     "LABEL_4": "IT_Support",
 }
 
+LOCAL_MODEL_DIR = Path("BERT_BEST")
+USE_LOCAL_MODEL = LOCAL_MODEL_DIR.exists()
+
 @st.cache_resource(show_spinner=False)
 def load_model():
-    tok = AutoTokenizer.from_pretrained(HF_MODEL_NAME)
-    mdl = AutoModelForSequenceClassification.from_pretrained(HF_MODEL_NAME)
+    if USE_LOCAL_MODEL:
+        # ===== Load local BERT model if exists =====
+        tok = AutoTokenizer.from_pretrained(LOCAL_MODEL_DIR)
+        mdl = AutoModelForSequenceClassification.from_pretrained(LOCAL_MODEL_DIR)
+        st.info("Loaded local BERT model (BERT_BEST).")
+    else:
+        # ===== Load from Hugging Face Hub =====
+        tok = AutoTokenizer.from_pretrained(HF_MODEL_NAME)
+        mdl = AutoModelForSequenceClassification.from_pretrained(HF_MODEL_NAME)
+        st.info("Loaded BERT model from Hugging Face.")
+
     mdl.eval().to("cpu")
 
     id2label = getattr(mdl.config, "id2label", None)
@@ -350,6 +362,7 @@ def load_model():
         labels = FALLBACK_LABELS
 
     return tok, mdl, labels
+
 
 tokenizer, model, LABELS = load_model()
 
