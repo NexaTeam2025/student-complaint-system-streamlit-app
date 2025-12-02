@@ -529,7 +529,6 @@ with left_col:
         )
         submitted = st.form_submit_button("Classify", type="primary")
 
-    # (تم حذف st.caption)
 
     pred_box = st.container()
 
@@ -537,7 +536,6 @@ with left_col:
         if not text.strip():
             st.warning("Please enter the complaint text first.")
         else:
-            # ======= استبدال صندوق الحالة بسبينر مؤقت =======
             with st.spinner("Asking the AI agent..."):
                 agent_result = ai_agent(text)
                 agent_view = for_frontend(agent_result)
@@ -570,7 +568,6 @@ with left_col:
             else:
                 st.info("This looks non-technical.")
 
-                # ======= استبدال صندوق حالة BERT =======
                 with st.spinner("Classifying (BERT)..."):
                     top_label, top_conf = classify_top1(text)
                 display_label = LABEL_ALIAS.get(top_label, top_label)
@@ -675,7 +672,6 @@ with right_col:
 
         st.markdown("<div style='height:15px'></div>", unsafe_allow_html=True)
 
-        # ملاحظات (Arabic)
         st.markdown("""
         <div class="rp-card rtl">
         <div class="rp-title"><span class="dot"></span> ملاحظات</div>
