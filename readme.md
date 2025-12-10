@@ -246,11 +246,6 @@ https://dagshub.com/<repo>/mlflow
 └── README.md
 ```
 
----
-
-## Screenshots and Demo (Optional)
-
-You may attach images from your Streamlit UI and MLflow dashboard.
 
 ---
 
@@ -260,14 +255,3 @@ You may attach images from your Streamlit UI and MLflow dashboard.
 * Add multilingual TTS replies
 * Add admin dashboard for ticket statistics
 * Deploy via Docker or Hugging Face Spaces
-
----
-
-If you'd like, I can also provide:
-
-* A simplified README for non-technical stakeholders
-* A "Quickstart Guide" section
-* A complete diagram (MermaidJS or draw.io format)
-* A public-facing project description for LinkedIn/GitHub
-
-Just tell me what you want next.
